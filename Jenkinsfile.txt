@@ -8,10 +8,7 @@ pipeline{
 	stage('checkout'){
 	   agent any
 	  steps{
-	   script{
-		git branch: 'main',
-		    url : 'https://github.com/pawarjb/JenkinScmFileRepo.git'	
-		}
+		git 'https://github.com/pawarjb/JenkinScmFileRepo.git'	
 	     }
 	  }
 	stage('compile'){

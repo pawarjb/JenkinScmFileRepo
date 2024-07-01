@@ -1,0 +1,38 @@
+pipeline{
+	tools{
+	  maven "my_maven"
+	  jdk "my_java"
+}
+	agent none
+	stages{
+	stage('checkout'){
+	   agent any
+	  steps{
+	   script{
+		git branch: 'main',
+		    url : 'https://github.com/pawarjb/JenkinScmFileRepo.git'	
+		}
+	     }
+	  }
+	stage('compile'){
+	 agent any
+	 steps {
+		bat 'mvn compile'
+	  }
+	}
+	stage('unitTest'){
+	agent any
+	steps{
+		bat 'mvn test'
+	  }
+	}
+     stage('Package'){
+	agent any
+	steps{
+		bat 'mvn package'
+	}
+}
+
+}
+
+}
